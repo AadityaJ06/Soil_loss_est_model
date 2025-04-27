@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USLE Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 350px;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0 16px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>USLE Soil Loss Calculator</h1>
+
+    <form method="POST">
+        <label>Select the variable you want to calculate:</label>
+        <select name="unknown" required>
+            <option value="A">A (Soil Loss)</option>
+            <option value="R">R (Rainfall erosivity)</option>
+            <option value="K">K (Soil erodibility)</option>
+            <option value="LS">LS (Slope Length & Steepness)</option>
+            <option value="C">C (Cover Management)</option>
+            <option value="P">P (Support Practice)</option>
+        </select>
+
+        <label>Enter known values (leave blank for unknown):</label>
+
+        <label>A (tons/acre/year):</label>
+        <input type="number" step="any" name="A">
+
+        <label>R (Rainfall erosivity factor):</label>
+        <input type="number" step="any" name="R">
+
+        <label>K (Soil erodibility factor):</label>
+        <input type="number" step="any" name="K">
+
+        <label>LS (Slope length-steepness factor):</label>
+        <input type="number" step="any" name="LS">
+
+        <label>C (Cover management factor):</label>
+        <input type="number" step="any" name="C">
+
+        <label>P (Support practice factor):</label>
+        <input type="number" step="any" name="P">
+
+        <input type="submit" value="Calculate">
+    </form>
+
+    {% if result is not none %}
+        <div class="result">
+            Result: {{ result | round(3) }}
+        </div>
+    {% endif %}
+
+</body>
+</html>
